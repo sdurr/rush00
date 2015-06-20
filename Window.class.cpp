@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:43:26 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/20 15:43:30 by msarr            ###   ########.fr       */
+/*   Updated: 2015/06/20 20:57:49 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ Window::Window()
         init_pair(2, COLOR_BLUE, COLOR_BLACK);
         init_pair(3, COLOR_RED, COLOR_BLACK);
         init_pair(4, COLOR_GREEN, COLOR_BLACK);
+		timeout(100);
         noecho();
         cbreak();
         keypad(stdscr, TRUE);

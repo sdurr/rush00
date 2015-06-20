@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/20 19:52:13 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/20 20:11:54 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,6 +23,7 @@ class Character {
 public:
 	Character( std::string name , int hp, int x, int y, int life, int xMax, int yMax);
 	~Character( void );
+	Character( void );
 
 	int getHp( void ) const;
 	int getLife( void ) const;
@@ -44,7 +45,6 @@ public:
 
 private:
 	Character( Character const & src );
-	Character( void );
 
 	std::string _name;
 	int _hp;

@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:32 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/20 20:01:25 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/20 20:55:23 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -104,6 +104,10 @@ std::ostream & operator<<(std::ostream & o, Character const & i) {
 void		Character::affChar(void) const {
 	if (this->_x >= 2)
 		mvprintw(this->_y, this->_x, "X");
+}
+
+Character::Character(void) : _name("X"), _hp(1), _hpMax(1), _x(50), _y(18), _life(30), _xMax(30), _yMax(30) {
+	return;
 }
 
 void		Character::lowX(void)

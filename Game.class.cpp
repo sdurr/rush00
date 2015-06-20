@@ -6,12 +6,14 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/20 20:04:02 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/20 23:07:42 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "Character.class.hpp"
+
+static int indexRef = 1;
 
 Game::Game() : _score(0), _x(1)
 {
@@ -34,15 +36,44 @@ void	Game::setY()
 void	Game::play()
 {
 	int	key;
-	Character	*test = new Character("X", 1, 20, 10, 18, 30, 30);
+	int i;
+	int r;
+	Character	**horde = new Character*[5];
+
+	i = 0;
+	while ( i <= 4)
+	{
+			r = rand() % 28;
+			if (r == 0)
+				r = 29;
+			horde[i] = new Character;
+			horde[i]->setY(r);
+		i++;
+	} 
 	while (1)
 	{
+	
+		i = 0;
 		curs_set(0);
 		clear();
-		if (test->getX() >= 1)
-			test->affChar();
+		border(':', ':', '_', '_', '+', '+', '+', '+');
+		while (i  < indexRef && horde[i])
+		{
+			if (horde[i]->getX() == 1)
+			{
+				delete horde[i];
+				horde[i] = new Character;
+				r = rand() % 28;
+				if (r == 0)
+					r = 29;
+				horde[i]->setY(r);
+			}
+			horde[i]->affChar();
+			horde[i]->lowX();
+			i++;
+		} 
+		indexRef++;
 		refresh();
-		test->lowX();
 		this->display();
 		key = getch();
 		if (key == KEY_UP)
