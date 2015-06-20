@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-//   Updated: 2015/06/20 18:45:45 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/20 22:55:20 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,15 @@ class 	Game
 	private:
 		int			_score;
 		int			_x;
+		int			_posy;
+		int			_posx;
+		int			_oldPosy;
+		int			_oldPosx;
 		int			_y;
 		Window		*_w;
 		void		display();
-
+		int			_time;
+		void		add_char();
 
 };
 #endif

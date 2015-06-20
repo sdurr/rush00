@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:43:26 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/20 15:43:30 by msarr            ###   ########.fr       */
+//   Updated: 2015/06/20 20:53:41 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ Window::Window()
         init_pair(4, COLOR_GREEN, COLOR_BLACK);
         noecho();
         cbreak();
+		timeout(500);
         keypad(stdscr, TRUE);
         bkgd(COLOR_PAIR(1));
         refresh();
@@ -36,7 +37,7 @@ Window::Window()
     {
         std::cout << "Game_2048: Initialisation failed." << std::endl;
         std::exit(0);
-    }   
+    }
 }
 
 Window::Window(Window &)
@@ -61,7 +62,7 @@ void    Window::setSize()
     {
         std::cout << "Game_2048: Initialisation failed." << std::endl;
         std::exit(0);
-    } 
+    }
 }
 
  WINDOW *    Window::getWin()
