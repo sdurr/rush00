@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/20 19:52:13 by acivita          ###   ########.fr       */
+//   Updated: 2015/06/21 00:25:33 by sdurr            ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,6 +23,7 @@ class Character {
 public:
 	Character( std::string name , int hp, int x, int y, int life, int xMax, int yMax);
 	~Character( void );
+	Character( void );
 
 	int getHp( void ) const;
 	int getLife( void ) const;
@@ -31,9 +32,11 @@ public:
 	std::string getName( void ) const;
 
 	void setHp( int hp );
-	void setX( int x );
-	void setY( int y );
+	void setOldX( int x );
+	void setOldY( int y );
 	void setXmax( int x );
+	void setX( int x );
+	void setY( int Y );
 	void setYmax( int y );
 	void setLife( int life );
 	void move( int x, int y);
@@ -44,7 +47,6 @@ public:
 
 private:
 	Character( Character const & src );
-	Character( void );
 
 	std::string _name;
 	int _hp;
@@ -54,7 +56,8 @@ private:
 	int	_life;
 	int _xMax;
 	int _yMax;
-
+	int _oldX;
+	int _oldY;
 	Character & operator=(Character const & rhs );
 };
 

@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-//   Updated: 2015/06/20 22:55:20 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/20 23:19:47 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "Window.class.hpp"
 #include "Character.class.hpp"
+#include <ctime>
 
 class 	Game
 {
@@ -37,7 +38,5 @@ class 	Game
 		Window		*_w;
 		void		display();
 		int			_time;
-		void		add_char();
-
 };
 #endif

@@ -1,3 +1,4 @@
+
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
@@ -6,7 +7,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:32 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/20 20:17:06 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 01:30:08 by sdurr            ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -58,35 +59,30 @@ void		Character::setLife( int life )
 		_life = 0;
 }
 
-void		Character::setX( int x ) {
-	_x = x;
-	if (_x > _xMax)
-		_x = _xMax;
-	if (_x < 0)
-		_x = 0;
-}
-
-void		Character::setY( int y ) {
-	_y = y;
-	if (_y > _yMax)
-		_y = _yMax;
-	if (_y < 0)
-		_y = 0;
-}
-
-void	Character::setXmax( int x ) {
-	_xMax = x;
+void	Character::setX( int x ) {
+	_x= x;
 }
 
 void	Character::setYmax( int y ) {
 	_yMax = y;
 }
 
+
+void	Character::setY( int y ) {
+	_y = y;
+}
+
+void	Character::setOldX( int x ) {
+	_oldX = x;
+}
+
+void	Character::setOldY( int y ) {
+	_oldY = y;
+}
+
 /************************************   Fonction  *******************************/
 
 void	Character::move( int x, int y) {
-	setX(x);
-	setY(y);
 }
 
 
@@ -102,14 +98,31 @@ std::ostream & operator<<(std::ostream & o, Character const & i) {
 /***/
 
 void		Character::affChar(void) const {
-	if (this->_x >= 2)
-		mvprintw(this->_y, this->_x, "X");
+	mvprintw(this->_y, this->_oldX, " ");
+		if (this->_x >= 2) {
+			mvprintw( 2, 2 ,"rentre  dans f");
+
+			mvprintw(this->_oldY, this->_oldX, " ");
+			refresh();
+			mvprintw(this->_y, this->_x, "X");
+		}
+	else
+	{
+		mvprintw(this->_y, this->_x, " ");
+		refresh();
+	}
+}
+
+Character::Character( void ) : _name("X"), _hp(1), _hpMax(1), _x(100), _y(50), _life(30), _xMax(30), _yMax(30), _oldX(50), _oldY(18) {
+	return;
 }
 
 void		Character::lowX(void)
 {
-	if (this->_x > 1)
+//	this->_oldX = _x;
+		this->_oldX = _x;
 		this->_x -= 1;
+
 }
 
 /***/
