@@ -6,17 +6,19 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/20 17:31:07 by msarr            ###   ########.fr       */
+//   Updated: 2015/06/20 18:42:13 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 
 
-Game::Game() :_score(0), _x(1)
+Game::Game() : _score(0), _x(1)
 {
 	this->_w = new Window;
 	this->setY();
+	this->_score = 0;
+	this->_x = 0;
 }
 
 Game::~Game()
@@ -49,8 +51,7 @@ void	Game::play()
 			delete this->_w;
 			std::exit(0);
 		}
-	}
-}
+	}}
 
 void	Game::display()
 {

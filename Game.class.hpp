@@ -6,13 +6,15 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/20 17:31:14 by msarr            ###   ########.fr       */
+//   Updated: 2015/06/20 18:45:45 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_CLASS_H
 # define GAME_CLASS_H
+
 #include "Window.class.hpp"
+#include "Character.class.hpp"
 
 class 	Game
 {
@@ -25,13 +27,12 @@ class 	Game
 
 
 	private:
-		//Charater	_tabChar[10];
 		int			_score;
 		int			_x;
 		int			_y;
 		Window		*_w;
 		void		display();
 
-	
+
 };
 #endif

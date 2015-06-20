@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/20 17:45:45 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/20 18:44:46 by sdurr            ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,6 +16,7 @@
 # define CHARACTER_H
 
 #include <iostream>
+
 
 class Character {
 public:

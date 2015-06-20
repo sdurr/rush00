@@ -1,41 +1,49 @@
-NAME = ft_retro
+#******************************************************************************#
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/06/20 18:39:40 by sdurr             #+#    #+#              #
+#    Updated: 2015/06/20 18:46:29 by sdurr            ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
 
-FILES = main.cpp
-OBJS	= $(FILES:%.cpp=.obj/%.o)
-	FLAGS = -Wall -Werror -Wextra
-	INC = *.cpp
-	LIB = -lncurses
-	CC = clang++
+NAME		= ft_retro
+SRC			= main.cpp \
+				Window.class.cpp \
+				Game.class.cpp \
+				Character.class.cpp
 
-all: $(NAME)
+OBJ			= $(SRC:.cpp=.o)
+CC			= /usr/bin/clang++
+CFLAGS		= -Wall -Wextra -Werror -lncurses
+RM			= /bin/rm -f
+ECHO			= /bin/echo -e
 
-$(NAME): $(OBJS) aff
-	@$(CC) $(OBJS) -o $(NAME) -lncurses
+$(NAME)	:		$(OBJ)
+				@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+				@$(ECHO) '> Compiled'
 
-.obj/%.o: %.cpp
-	@mkdir -p .obj
-	@clang++ -c $< -o $@ $(FLAGS)
+clean	:
+				-@$(RM) $(OBJ)
+				-@$(RM) *~
+				@$(ECHO) '> Directory cleaned'
 
-aff:
-	@echo "\\033[1;32m"
-	@echo "     _                 ( WELCOME TO THE RUSH 00 )"
-	@echo "    /\ \                 ( HOPE YOUR ENJOY IT )"
-	@echo "   \ \ \  \__/ \__/  /  ( LOVE YOU )"
-	@echo "    \ \ \ (oo) (oo) /     ( <3 )"
-	@echo "     \_\ \/~~\_/~~\_"
-	@echo "    _.-~===========~-._"
-	@echo "   (___/_______________)"
-	@echo "      /  \_______/"
-	@echo "\n"
+all		:		$(NAME)
 
+fclean	:		clean
+				-@$(RM) $(NAME)
+				@$(ECHO) '> Remove executable'
 
+re		:		fclean all
 
-clean:
-	@rm -rf .obj
+.PHONY	:		all clean re
 
-fclean: clean
-	@rm -f $(NAME)
+debug	:		$(OBJ)
+				@$(CC) $(INC) $(CDEBUG) -o $(NAME) $(OBJ)
+				@$(ECHO) '> Mode Debug: done'
 
-re: fclean all
-
-.PHONY: all clean fclean re
+.c.o	:
+				$(CC) $(CFLAGS) -o $@ -c $<
