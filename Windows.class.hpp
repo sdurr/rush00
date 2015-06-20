@@ -1,19 +1,28 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   main.cpp                                           :+:      :+:    :+:   //
+//   Windows.class.hpp                                  :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/06/20 15:17:52 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/20 15:31:51 by sdurr            ###   ########.fr       //
+//   Created: 2015/06/20 15:24:42 by sdurr             #+#    #+#             //
+//   Updated: 2015/06/20 15:36:38 by sdurr            ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include "Windows.class.hpp"
+#ifndef WINDOWSCLASS_H
+# define WINDOWSCLASS_H
 
-int main( void )
-{
-	Windows win;
-	return 0;
-}
+class Windows {
+public:
+	Windows( void );
+	~Windows ( void );
+	Windows( Windows const & src );
+	Windows & operator=(Windows const & rhs );
+private:
+
+
+
+};
+
+#endif
