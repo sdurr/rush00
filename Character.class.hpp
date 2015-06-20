@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/20 18:44:46 by sdurr            ###   ########.fr       //
+/*   Updated: 2015/06/20 19:52:13 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,6 +16,7 @@
 # define CHARACTER_H
 
 #include <iostream>
+#include "Game.class.hpp"
 
 
 class Character {
@@ -38,6 +39,8 @@ public:
 	void move( int x, int y);
 
 	void takeDamage( int Dam );
+	void affChar(void) const; //ajout antho
+	void lowX(void); // ajout antho
 
 private:
 	Character( Character const & src );

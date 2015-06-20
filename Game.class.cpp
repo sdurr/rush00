@@ -6,12 +6,12 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-//   Updated: 2015/06/20 18:42:13 by sdurr            ###   ########.fr       //
+/*   Updated: 2015/06/20 20:04:02 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
-
+#include "Character.class.hpp"
 
 Game::Game() : _score(0), _x(1)
 {
@@ -34,8 +34,15 @@ void	Game::setY()
 void	Game::play()
 {
 	int	key;
+	Character	*test = new Character("X", 1, 20, 10, 18, 30, 30);
 	while (1)
 	{
+		curs_set(0);
+		clear();
+		if (test->getX() >= 1)
+			test->affChar();
+		refresh();
+		test->lowX();
 		this->display();
 		key = getch();
 		if (key == KEY_UP)
