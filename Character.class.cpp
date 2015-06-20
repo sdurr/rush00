@@ -98,19 +98,11 @@ std::ostream & operator<<(std::ostream & o, Character const & i) {
 /***/
 
 void		Character::affChar(void) const {
-	mvprintw(this->_y, this->_oldX, " ");
-		if (this->_x >= 2) {
-			mvprintw( 2, 2 ,"rentre  dans f");
 
-			mvprintw(this->_oldY, this->_oldX, " ");
-			refresh();
-			mvprintw(this->_y, this->_x, "X");
-		}
-	else
-	{
-		mvprintw(this->_y, this->_x, " ");
-		refresh();
-	}
+	mvprintw(this->_y, this->_x + 1, " ");
+	refresh();
+	if (this->_x > 2)
+		mvprintw(this->_y, this->_x, "X");
 }
 
 Character::Character( void ) : _name("X"), _hp(1), _hpMax(1), _x(100), _y(50), _life(30), _xMax(30), _yMax(30), _oldX(50), _oldY(18) {

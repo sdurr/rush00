@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 01:34:48 by sdurr            ###   ########.fr       //
+/*   Updated: 2015/06/21 01:46:11 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	Game::play()
 	while (1)
 	{
 		i = 0;
-		clear();
+//		clear();
 		while (i  < indexRef && i < 30)
 		{
 			if ( horde[i].getX() <= 1 || horde[i].getLife() == 0 )
