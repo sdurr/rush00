@@ -9,20 +9,25 @@ CC = clang++
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) aff
 	@$(CC) $(OBJS) -o $(NAME) -lncurses
+
+aff:
+	@echo "\\033[1;32m"
+	@echo "\n"
+	@echo "    _                 ( WELCOME TO THE RUSH 00 )"
+	@echo "  /\ \                 ( HOPE YOUR ENJOY IT )"
+	@echo "  \ \ \  \__/ \__/  /  ( LOVE YOU )"
+	@echo "   \ \ \ (oo) (oo) /     ( <3 )"
+	@echo "    \_\ \/~~\_/~~\_"
+	@echo "   _.-~===========~-._"
+	@echo "  (___/_______________)"
+	@echo "     /  \_______/"
+	@echo "\n"
 
 .obj/%.o: %.cpp
 	@mkdir -p .obj
 	@clang++ -c $< -o $@ $(FLAGS)
-	@echo "                .        ___---___                    ."
-	@echo "       .              .--\        --.     .     .         ."
-	@echo "                    ./.;_.\     __/~ \."
-	@echo "                   /;  / `-'  __\    . \"
-	@echo " .        .       / ,--'     / .   .;   \ "
-	@echo "                 | .|       /       __   |      -O-       ."
-	@echo -n .
-	@echo "\n"
 
 clean:
 	@rm -rf .obj
