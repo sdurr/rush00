@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 05:06:04 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 06:50:46 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ class 	Game
 		int			_posx;
 		int			_y;
 		Window		*_w;
-		void		display();
 		int			_time;
 };
 #endif

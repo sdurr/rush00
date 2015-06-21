@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 05:17:06 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 06:50:42 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	Game::play()
 			horde[i].coll(missile);
 			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy)
 				exit(0);
-			if ( horde[i].getX() <= 1 || horde[i].getLife() == 0 )
+			if ( horde[i].getX() <= 1 || horde[i].getHp() == 0 )
 			{
 				r = rand() % new_y - 2;
 				if (r == 0)
@@ -120,7 +120,6 @@ void	Game::play()
 			mvprintw( this->_posy, this->_posx, ">" );
 		}
 		border(':', ':', '_', '_', '+', '+', '+', '+');
-		this->display();
 		key = getch();
 		if ( key == KEY_UP )
 		{
@@ -162,9 +161,4 @@ void	Game::play()
 		}
 
 	}
-}
-
-void	Game::display()
-{
-
 }

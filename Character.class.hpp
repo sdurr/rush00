@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/21 04:50:26 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 06:49:33 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -20,47 +20,31 @@
 
 
 class Character {
+
 public:
-	Character( std::string name , int hp, int x, int y, int life, int xMax, int yMax);
+	Character( std::string name , int hp, int x, int y);
 	~Character( void );
 	Character( void );
 
 	int getHp( void ) const;
-	int getLife( void ) const;
 	int getX( void ) const;
 	int getY( void ) const;
 	std::string getName( void ) const;
 
-	void setHp( int hp );
-	void setOldX( int x );
-	void setOldY( int y );
-	void setXmax( int x );
 	void setX( int x );
 	void setY( int Y );
-	void setYmax( int y );
-	void setLife( int life );
-	void move( int x, int y);
 
-	void takeDamage( int Dam );
-	void affChar(void) const; //ajout antho
-	void lowX(void); // ajout antho
-//////
+	void affChar(void) const;
+	void lowX(void); 
 	void rightX(void);
 	void coll(Character *missile);
 
 private:
 	Character( Character const & src );
-
 	std::string _name;
 	int _hp;
-	int _hpMax;
 	int _x;
 	int _y;
-	int	_life;
-	int _xMax;
-	int _yMax;
-	int _oldX;
-	int _oldY;
 	int _special;
 	Character & operator=(Character const & rhs );
 };
