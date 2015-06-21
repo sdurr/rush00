@@ -62,7 +62,8 @@ std::ostream & operator<<(std::ostream & o, Character const & i) {
 
 void		Character::affChar(void) const {
 
-	mvprintw(this->_y, this->_x + 1, "   ");
+
+	mvprintw(this->_y, this->_x , "     ");
 	refresh();
 	if (this->_x > 2 && this->_hp > 0)
 	{
@@ -75,7 +76,7 @@ void		Character::affChar(void) const {
 			mvprintw(this->_y, this->_x, "[-]");
 		attroff(COLOR_PAIR(this->_special));
 	}
-
+	refresh();
 }
 
 Character::Character(void) : _name("<->"), _hp(0), _x(0), _y(0) {
@@ -101,22 +102,19 @@ void		Character::rightX(void)
 	refresh();
 }
 
-void		Character::coll(Character *missile)
+void		Character::coll(Character *missile, int indexRef)
 {
 	int	i;
 
 	i = 0;
-	while (i < 30)
+	while (i < indexRef)
 	{
 		if (missile[i].getX() == this->_x)
 		{
 			if(missile[i].getY() == this->_y)
 			{
-				if (this->_hp == 0)
-					this->_hp = 0;
-				else
 					this->_hp -= 1;
-				missile[i].setX(-1);
+					missile[i].setX(-1);
 			}
 		}
 		i++;
