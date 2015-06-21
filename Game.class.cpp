@@ -164,7 +164,7 @@ void	Game::play()
 		mvprintw(0, 0, ScorT.c_str());
 
 		scor.str("");
-		if (this->_score < 300)
+		if (this->_score < 400)
 			while (i < 30)
 			{
 				this->_score += horde[i].coll(missile,  new_x - 3);
