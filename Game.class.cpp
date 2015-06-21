@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 07:51:23 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 07:56:16 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	Game::play()
 		}
 			getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
+			erase();
 			border(':', ':', '_', '_', '+', '+', '+', '+');
 			this->_x = new_x;
 			this->_y = new_y;
