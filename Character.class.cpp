@@ -7,7 +7,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:32 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/21 01:30:08 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 13:32:02 by sdurr            ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -88,6 +88,20 @@ void		Character::affChar(void) const {
 	refresh();
 }
 
+void		Character::affBoss(int x, int y) {
+
+	mvprintw(y++, x, "#**************************#");
+	mvprintw(y++, x, "#                          #");
+	mvprintw(y++, x, "#        :::      :::::::: #");
+	mvprintw(y++, x, "#      :+:      :+:    :+: #");
+	mvprintw(y++, x, "#    +:+ +:+         +:+   #");
+	mvprintw(y++, x, "#  +#+  +:+       +#+      #");
+	mvprintw(y++, x, "# +#+#+#+#+#+   +#+        #");
+	mvprintw(y++, x, "#     #+#    #+#           #");
+	mvprintw(y++, x, "#    ###   ########        #");
+	mvprintw(y++, x, "#                          #");
+	mvprintw(y++, x, "#**************************#");
+}
 Character::Character(void) : _name("<->"), _hp(0), _x(0), _y(0), _toPrint(0) {
 	int r;
 

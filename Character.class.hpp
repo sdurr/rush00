@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/21 10:20:37 by acivita          ###   ########.fr       */
+//   Updated: 2015/06/21 13:26:43 by sdurr            ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -36,6 +36,7 @@ public:
 	void setToPrint(int n);	
 	void setY( int Y );
 
+	void affBoss(int x, int y) ;
 	void affChar(void) const;
 	void lowX(void); 
 	void rightX(void);

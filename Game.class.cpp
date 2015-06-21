@@ -6,12 +6,13 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 12:14:41 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 13:43:17 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "Character.class.hpp"
+#include "Background.class.hpp"
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -65,9 +66,12 @@ void	Game::play()
 	int tmp;
 	std::ostringstream scor;
 	std::string ScorT;
+	static int test_clear = 0;
 
 	size = 30;
+
 	getmaxyx(stdscr, new_y, new_x);
+	Background backG = Background(new_x, new_y);
 	Character	*missile = new Character[new_x - 3];
 	this->_posy = new_y /2;
 	curs_set(0);
@@ -95,6 +99,7 @@ void	Game::play()
 		j = 0;
 	while (1)
 	{
+		backG.move();
 		i = 0;
 		j++;
 		while(i < new_x - 3)
@@ -118,11 +123,11 @@ void	Game::play()
 		ScorT = scor.str();
 		mvprintw(0, 0, ScorT.c_str());
 		scor.str("");
-	
+		if (this->_score < 600)
 		while (i < 30)
 		{
 			this->_score += horde[i].coll(missile);
-			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy)
+			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy && horde[i].getHp() > 0)
 			{
 				this->_hp--;
 				if (this->_hp <= 0)
@@ -146,7 +151,6 @@ void	Game::play()
 			if (horde[i].getToPrint() == 1)
 			{
 				horde[i].coll(missile);
-			border(':', ':', '_', '_', '+', '+', '+', '+');
 				horde[i].affChar();
 				horde[i].lowX();
 			}
@@ -157,6 +161,14 @@ void	Game::play()
 			}
 			i++;
 		}
+		else if (test_clear == 0) {
+			clear();
+			test_clear++;		
+		}
+		else {
+			Character Boss;
+			Boss.affBoss(30, 30);
+}
 		getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
 			erase();
@@ -185,10 +197,10 @@ void	Game::play()
 				;
 		else if ( key == ' ' )
 		{
-						int jj = 0;
+			int jj = 0;
 			while (jj < new_x - 3)
 			{
-
+				
 				if (missile[jj].getX() == -1)
 				{
 					missile[jj].setX(this->_posx + 1);
@@ -196,6 +208,7 @@ void	Game::play()
 					break;
 				}
 				jj++;
+				border(':', ':', '_', '_', '+', '+', '+', '+');
 			}
 		}
 		else if ( key == KEY_DOWN )

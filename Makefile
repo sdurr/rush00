@@ -6,7 +6,7 @@
 #    By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/06/20 18:39:40 by sdurr             #+#    #+#              #
-#    Updated: 2015/06/20 18:46:29 by sdurr            ###   ########.fr        #
+#    Updated: 2015/06/21 13:44:01 by sdurr            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,8 @@ NAME		= ft_retro
 SRC			= main.cpp \
 				Window.class.cpp \
 				Game.class.cpp \
-				Character.class.cpp
+				Character.class.cpp \
+				Background.class.cpp
 
 OBJ			= $(SRC:.cpp=.o)
 CC			= /usr/bin/clang++

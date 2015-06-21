@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:43:26 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 09:10:54 by acivita          ###   ########.fr       */
+//   Updated: 2015/06/21 13:45:14 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ Window::Window()
     if (initscr())
     {
         start_color();
+		init_color(COLOR_YELLOW, 500, 400, 100);
         init_pair(1, COLOR_CYAN, COLOR_BLACK);
         init_pair(2, COLOR_BLUE, COLOR_BLACK);
         init_pair(3, COLOR_RED, COLOR_BLACK);
         init_pair(4, COLOR_GREEN, COLOR_BLACK);
+        init_pair(5, COLOR_YELLOW, COLOR_BLACK);
         noecho();
         cbreak();
 		timeout(50);
