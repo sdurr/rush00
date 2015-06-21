@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 11:02:35 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 12:13:37 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class 	Game
 
 		int		getHP(void) const;
 		int		getScore(void) const;
+		int		pause( void ) const;
 
 	private:
 		int			_score;

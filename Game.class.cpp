@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 11:40:41 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 12:14:41 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ int		Game::getHP(void) const {
 
 int		Game::getScore(void) const {
 	return this->_hp;
+}
+
+int	Game::pause( void ) const {
+	int key;
+
+	key = getch();
+	if (key == '0')
+		return 1;
+	return -1;
+
 }
 
 void	Game::play()
@@ -136,6 +146,7 @@ void	Game::play()
 			if (horde[i].getToPrint() == 1)
 			{
 				horde[i].coll(missile);
+			border(':', ':', '_', '_', '+', '+', '+', '+');
 				horde[i].affChar();
 				horde[i].lowX();
 			}
@@ -169,6 +180,9 @@ void	Game::play()
 		}
 		else if ( key == KEY_LEFT )
 			;
+		else if ( key == '0' )
+			while (pause() != 1)
+				;
 		else if ( key == ' ' )
 		{
 						int jj = 0;
