@@ -118,6 +118,8 @@ void	Game::play()
 				if (this->_hp <= 0)
 				{
 					endwin();
+					delete [] missile;
+					delete this->_w;
 					return;
 				}
 			}
@@ -147,6 +149,7 @@ void	Game::play()
 		getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
 			erase();
+			border(':', ':', '_', '_', '+', '+', '+', '+');
 			border(':', ':', '_', '_', '+', '+', '+', '+');
 			this->_x = new_x;
 			this->_y = new_y;
@@ -191,6 +194,7 @@ void	Game::play()
 	 		}
 		}
 		else if ( key == 27 ) {
+			delete [] missile;
 			delete this->_w;
 			std::exit(0);
 		}
