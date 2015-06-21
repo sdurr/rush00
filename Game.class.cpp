@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 02:55:36 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 04:26:34 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ void	Game::play()
 	this->_posy = _y / 2;
 	this->_posx = 2;
 	i = 0;
-	tmp = horde[i].getX();
 	while ( i <= size - 1)
 	{
 			r = rand() % new_y - 2;
 			if (r < 1)
 				r = 2;
 			horde[i].setY(r);
-			horde[i].setOldY(horde[i].getY());
+			horde[i].setX(new_x - 5);
 		i++;
 	}
 	while (1)
 	{
+		mvprintw(0, 0, "Score : 0 / Life : 5 / ");
 		i = 0;
 		while (i  < indexRef && i < 30)
 		{
@@ -73,13 +73,11 @@ void	Game::play()
 				if (r == 0)
 					r = new_y - 1;
 				horde[i].setOldY(horde[i].getY());
-				horde[i].setOldX(1);
 				horde[i].setY(r);
-				horde[i].setX(100);
+				horde[i].setX(new_x - 5);
 			}
 			else {
 				horde[i].affChar();
-				tmp = horde[i].getY();
 				horde[i].lowX();
 			}
 			i++;
@@ -92,6 +90,7 @@ void	Game::play()
 		}
 			getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
+			mvprintw(0, 0, "Score : 0 / Life : 5 / ");
 			border(':', ':', '_', '_', '+', '+', '+', '+');
 			this->_x = new_x;
 			this->_y = new_y;
