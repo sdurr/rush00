@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Game.class.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 16:47:42 by sdurr            ###   ########.fr       //
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "Character.class.hpp"
@@ -68,6 +57,12 @@ int	Game::pause( void ) const {
 
 }
 
+Character		&Character::operator=(Character const &src)
+{
+	this->_hp  = src.getHp();
+	return *this;
+}
+
 void	Game::play()
 {
 	int	key;
@@ -87,7 +82,10 @@ void	Game::play()
 
 	getmaxyx(stdscr, new_y, new_x);
 	Background backG = Background(new_x, new_y);
+	Character	boss("BOSS", 10000, (new_x - 30), ((new_y / 2 ) - 10));
 	Character	*missile = new Character[new_x - 3];
+	Character	*missile2 = new Character[new_x - 3];
+	this->_win = 0;
 	this->_posy = new_y /2;
 	curs_set(0);
 	this->_posy = _y / 2;
@@ -96,6 +94,11 @@ void	Game::play()
 	while ( i < new_x - 3)
 	{
 		missile[i].setX(-1);
+		i++;
+	}
+	while ( i < new_x - 3)
+	{
+		missile2[i].setX(-1);
 		i++;
 	}
 	i = 0;
@@ -112,6 +115,7 @@ void	Game::play()
 	}
 		horde[0].setToPrint(1);
 		j = 0;
+		tmp = 1;
 	while (1)
 	{
 		getmaxyx(stdscr, new_y, new_x);
@@ -133,15 +137,21 @@ void	Game::play()
 		{
 			if (missile[i].getX() != -1)
 			{
-				if (missile[i].getX() > this->_w->getWidh())
+				if (missile[i].getX() > new_x)
 					missile[i].setX(-1);
 				else
 					missile[i].rightX();
 			}
+			if (missile2[i].getX() != -1)
+			{
+				if (missile2[i].getX() < 0)
+					missile2[i].setX(-1);
+				else
+					missile2[i].leftX();
+			}
 			i++;
 		}
 		i = 0;
-		tmp = 0;
 		scor << "Your Score is: ";
 		scor << this->_score;
 		scor << " life a maining: ";
@@ -153,53 +163,91 @@ void	Game::play()
 		mvprintw(0, 0, ScorT.c_str());
 
 		scor.str("");
-		if (this->_score < 100)
-		while (i < 30)
-		{
-			this->_score += horde[i].coll(missile);
-			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy && horde[i].getHp() > 0)
+		if (this->_score < 300)
+			while (i < 30)
 			{
-				this->_hp--;
-				if (this->_hp <= 0)
+				this->_score += horde[i].coll(missile,  new_x - 3);
+				if ((horde[i].getX() == this->_posx && horde[i].getY() == this->_posy && horde[i].getHp() > 0))
 				{
-					endwin();
-					delete [] missile;
-					delete this->_w;
-					return;
+					this->_hp--;
+					if (this->_hp <= 0)
+					{
+						endwin();
+						delete [] missile;
+						delete this->_w;
+						return;
+					}
 				}
+				if ( horde[i].getX() <= 1 || horde[i].getHp() == 0 )
+				{
+					if (horde[i].getX() <= 1)
+						this->_score -= 10;
+					r = rand() % new_y - 2;
+					if (r == 0)
+						r = new_y - 1;
+					horde[i].setY(r);
+					horde[i].setX(new_x - 10);
+				}
+				if (horde[i].getToPrint() == 1)
+				{
+					horde[i].coll(missile, new_x - 3);
+					horde[i].affChar();
+					horde[i].lowX();
+				}
+				if (horde[i].getToPrint() == 0 && j == 20)
+				{
+					horde[i].setToPrint(1);
+					j = 0;
+				}
+				i++;
 			}
-			if ( horde[i].getX() <= 1 || horde[i].getHp() == 0 )
-			{
-				if (horde[i].getX() <= 1)
-					this->_score -= 10;
-				r = rand() % new_y - 2;
-				if (r == 0)
-					r = new_y - 1;
-				horde[i].setY(r);
-				horde[i].setX(new_x - 10);
-			}
-			if (horde[i].getToPrint() == 1)
-			{
-				horde[i].coll(missile);
-				horde[i].affChar();
-				horde[i].lowX();
-			}
-			if (horde[i].getToPrint() == 0 && j == 20)
-			{
-				horde[i].setToPrint(1);
-				j = 0;
-			}
-			i++;
-		}
 		else if (test_clear == 0) {
 			clear();
 			test_clear++;
 			clear();
 		}
 		else {
-			Character Boss;
-			Boss.affBoss(30, 30);
+			int jjj = 0;
+			while (jjj < new_x -3)
+			{
+				if (missile2[jjj].getX() == this->_posx && missile2[jjj].getY() == this->_posy)
+				{
+					endwin();
+					delete [] missile2;
+					delete this->_w;
+					return;
+				}
+				jjj++;
+			}
+			boss.affBoss();
+			boss.collBoss(missile, new_x-3);
+			if (boss.getHp() < 0)
+			{
+				this->_win = 1;
+				endwin();
+				delete [] missile2;
+				delete this->_w;
+				return;
+			}
+			if (boss.getY() >= new_y - 14)
+				tmp = -1;
+			else if (boss.getY() < 2)
+				tmp = 1;
+			boss.setY(boss.getY() + tmp);
+
 		}
+		getmaxyx(stdscr, new_y, new_x);
+		if ( this->_x != new_x || this->_y != new_y ) {
+			erase();
+			border(':', ':', '_', '_', '+', '+', '+', '+');
+			border(':', ':', '_', '_', '+', '+', '+', '+');
+			this->_x = new_x;
+			this->_y = new_y;
+			this->_posy = _y / 2;
+			this->_posx = 2;
+			mvprintw( this->_posy, this->_posx, ">" );
+		}	
+		mvprintw( this->_posy, this->_posx, ">" );
 		key = getch();
 		if ( key == KEY_UP )
 		{
@@ -221,11 +269,16 @@ void	Game::play()
 			while (jj < new_x - 3)
 			{
 				
-				if (missile[jj].getX() == -1)
+				if (missile[jj].getX() == -1 && missile[jj].getX() == -1)
 				{
 					missile[jj].setX(this->_posx + 1);
 					missile[jj].setY(this->_posy);
+					if (this->_score >= 250) {
+						missile2[jj].setX(boss.getX() - 1);
+						missile2[jj].setY(boss.getY() + 5);
+					}			
 					break;
+			
 				}
 				jj++;
 				border(':', ':', '_', '_', '+', '+', '+', '+');
