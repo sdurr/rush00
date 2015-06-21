@@ -125,7 +125,7 @@ void		Character::coll(Character *missile)
 				if (missile[i].getX() == this->_x + 1 || missile[i].getX() == this->_x)
 				{
 					this->_hp = 0;
-					mvprintw(10, 10, "XXX");
+					mvprintw(this->_y, this->_x, "    ");
 					missile[i].setX(-1);
 				}
 			}

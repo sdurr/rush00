@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 09:37:21 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 10:12:33 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ void	Game::play()
 			this->_posy = _y / 2;
 			this->_posx = 2;
 			mvprintw( this->_posy, this->_posx, ">" );
-		}
-		border(':', ':', '_', '_', '+', '+', '+', '+');
+		}	
+		mvprintw( this->_posy, this->_posx, ">" );
 		key = getch();
 		if ( key == KEY_UP )
 		{
