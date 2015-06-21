@@ -14,6 +14,7 @@
 #include "Character.class.hpp"
 
 Character::Character( std::string name, int hp, int x, int y, int life, int xMax, int yMax ) : _name(name), _hp(hp), _hpMax(hp), _x(x), _y(y), _life(life), _xMax(xMax), _yMax(yMax)  {
+
 	return ;
 }
 
@@ -72,14 +73,6 @@ void	Character::setY( int y ) {
 	_y = y;
 }
 
-void	Character::setOldX( int x ) {
-	_oldX = x;
-}
-
-void	Character::setOldY( int y ) {
-	_oldY = y;
-}
-
 /************************************   Fonction  *******************************/
 
 void	Character::move( int x, int y) {
@@ -101,12 +94,23 @@ void		Character::affChar(void) const {
 
 	mvprintw(this->_y, this->_x + 1, "   ");
 	refresh();
-	if (this->_x > 2)
-		mvprintw(this->_y, this->_x, "<@>");
+	if (this->_x > 2 && this->_life > 0)
+	{
+		if (this->_special == 1)
+			mvprintw(this->_y, this->_x, "<@>");
+		else if (this->_special == 2)
+			mvprintw(this->_y, this->_x, "_~0");
+		else
+			mvprintw(this->_y, this->_x, "[-]");
+	}
 
 }
 
-Character::Character( void ) : _name("<->"), _hp(1), _hpMax(1), _x(100), _y(50), _life(30), _xMax(30), _yMax(30), _oldX(50), _oldY(18) {
+Character::Character( void ) : _name("<->"), _hp(1), _hpMax(1), _x(100), _y(50), _life(30), _xMax(30), _yMax(30) {
+	int r;
+
+	r = 1 + rand() % 3;
+	this->_special = r;
 	return;
 }
 

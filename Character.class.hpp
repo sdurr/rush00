@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/21 00:25:33 by sdurr            ###   ########.fr       //
+/*   Updated: 2015/06/21 04:50:26 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -61,6 +61,7 @@ private:
 	int _yMax;
 	int _oldX;
 	int _oldY;
+	int _special;
 	Character & operator=(Character const & rhs );
 };
 

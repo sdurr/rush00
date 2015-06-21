@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 04:48:15 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 05:17:06 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	Game::play()
 			r = 2;
 		horde[i].setY(r);
 		horde[i].setX(new_x - 10);
-		horde[i].setOldY(horde[i].getY());
 		i++;
 	}
 	while (1)
@@ -87,13 +86,14 @@ void	Game::play()
 		i = 0;
 		while (i  < indexRef && i < 30)
 		{
+			horde[i].coll(missile);
+			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy)
+				exit(0);
 			if ( horde[i].getX() <= 1 || horde[i].getLife() == 0 )
 			{
 				r = rand() % new_y - 2;
 				if (r == 0)
 					r = new_y - 1;
-				horde[i].setOldY(horde[i].getY());
-				horde[i].setOldX(1);
 				horde[i].setY(r);
 				horde[i].setX(new_x - 10);
 			}
@@ -125,12 +125,10 @@ void	Game::play()
 		if ( key == KEY_UP )
 		{
 			if ( this->_posy > 1 ) {
-				this->_oldPosy = this->_posy;
-				this->_oldPosx = this->_posx;
 				this->_posy = this->_posy - 1;
 			}
-			mvprintw(this->_oldPosy, this->_oldPosx, " ");
-			mvprintw(this->_posy, this->_posx, ">");
+				mvprintw(this->_posy + 1, this->_posx, " ");
+				mvprintw(this->_posy, this->_posx, ">");
 		}
 		else if ( key == KEY_LEFT )
 			;
@@ -153,10 +151,8 @@ void	Game::play()
 		{
 			if ( this->_posy < _y - 2 )
 			{
-				this->_oldPosy = this->_posy;
-				this->_oldPosx = this->_posx;
 				this->_posy = this->_posy + 1;
-				mvprintw(this->_oldPosy, this->_oldPosx, " ");
+				mvprintw(this->_posy - 1, this->_posx, " ");
 				mvprintw(this->_posy, this->_posx, ">");
 	 		}
 		}
