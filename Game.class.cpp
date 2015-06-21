@@ -26,7 +26,7 @@ Game::Game() : _score(0), _x(1), _hp(5) {
 
 Game::~Game()
 {
-
+	std::cout << "THANKS BUT U LOOSE !" << std::endl;
 }
 
 void	Game::setY()

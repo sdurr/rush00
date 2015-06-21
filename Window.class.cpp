@@ -47,6 +47,7 @@ Window::Window(Window &)
 Window::~Window()
 {
     this->exit();
+    std::cout << "Ncurses perfectly close" << std::endl;
 }
 
 void    Window::setSize()
