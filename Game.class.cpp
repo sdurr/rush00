@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 04:45:10 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 04:48:15 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	Game::play()
 		if (r < 1)
 			r = 2;
 		horde[i].setY(r);
+		horde[i].setX(new_x - 10);
 		horde[i].setOldY(horde[i].getY());
 		i++;
 	}
@@ -94,7 +95,7 @@ void	Game::play()
 				horde[i].setOldY(horde[i].getY());
 				horde[i].setOldX(1);
 				horde[i].setY(r);
-				horde[i].setX(100);
+				horde[i].setX(new_x - 10);
 			}
 			else {
 				horde[i].affChar();
