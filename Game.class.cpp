@@ -6,12 +6,16 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 10:46:32 by acivita          ###   ########.fr       */
+//   Updated: 2015/06/21 11:40:41 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "Character.class.hpp"
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <cstdlib>
 
 Game::Game() : _score(0), _x(1), _hp(5) {
 	this->_w = new Window;
@@ -49,6 +53,8 @@ void	Game::play()
 	int size;
 	int j;
 	int tmp;
+	std::ostringstream scor;
+	std::string ScorT;
 
 	size = 30;
 	getmaxyx(stdscr, new_y, new_x);
@@ -94,6 +100,15 @@ void	Game::play()
 		}
 		i = 0;
 		tmp = 0;
+		scor << "Your Score is: ";
+		scor << this->_score;
+		scor << " life a maining: ";
+		scor << this->_hp;
+		scor << " ";
+		ScorT = scor.str();
+		mvprintw(0, 0, ScorT.c_str());
+		scor.str("");
+	
 		while (i < 30)
 		{
 			this->_score += horde[i].coll(missile);
