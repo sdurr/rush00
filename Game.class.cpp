@@ -6,16 +6,14 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 07:56:16 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 09:37:21 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.class.hpp"
 #include "Character.class.hpp"
 
-static int indexRef = 1;
-
-Game::Game() : _score(0), _x(1), _hp(2) {
+Game::Game() : _score(0), _x(1), _hp(5) {
 	this->_w = new Window;
 	this->setY();
 	this->_score = 0;
@@ -70,11 +68,15 @@ void	Game::play()
 			r = 2;
 		horde[i].setY(r);
 		horde[i].setX(new_x - 10);
+		horde[i].setToPrint(0);
 		i++;
 	}
+		horde[0].setToPrint(1);
+		j = 0;
 	while (1)
 	{
 		i = 0;
+		j++;
 		while(i < new_x - 3)
 		{
 			if (missile[i].getX() != -1)
@@ -87,12 +89,17 @@ void	Game::play()
 			i++;
 		}
 		i = 0;
-		while (i  < indexRef && i < 30)
+		tmp = 0;
+		while (i < 30)
 		{
-			horde[i].coll(missile, indexRef);
+			horde[i].coll(missile);
 			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy)
+			{
 				this->_hp--;
-			if ( horde[i].getX() <= 1 || horde[i].getHp() <= 0 )
+				if (this->_hp <= 0)
+					return;
+			}
+			if ( horde[i].getX() <= 1 || horde[i].getHp() == 0 )
 			{
 				r = rand() % new_y - 2;
 				if (r == 0)
@@ -100,20 +107,20 @@ void	Game::play()
 				horde[i].setY(r);
 				horde[i].setX(new_x - 10);
 			}
-			else {
+			if (horde[i].getToPrint() == 1)
+			{
+				horde[i].coll(missile);
 				horde[i].affChar();
-				tmp = horde[i].getY();
 				horde[i].lowX();
+			}
+			if (horde[i].getToPrint() == 0 && j == 20)
+			{
+				horde[i].setToPrint(1);
+				j = 0;
 			}
 			i++;
 		}
-		j++;
-		if (j == 25)
-		{
-			indexRef++;
-			j =0;
-		}
-			getmaxyx(stdscr, new_y, new_x);
+		getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
 			erase();
 			border(':', ':', '_', '_', '+', '+', '+', '+');

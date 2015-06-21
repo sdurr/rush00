@@ -39,6 +39,10 @@ std::string	Character::getName( void ) const {
 	return this->_name;
 }
 
+int			Character::getToPrint(void) const {
+	return this->_toPrint;
+}
+
 /*************************************  SET    *************************************/
 
 void	Character::setX( int x ) {
@@ -49,6 +53,11 @@ void	Character::setX( int x ) {
 void	Character::setY( int y ) {
 	_y = y;
 }
+
+void	Character::setToPrint(int n) {
+	_toPrint = n;
+}
+
 
 /************************************   Fonction  *******************************/
 
@@ -69,9 +78,9 @@ void		Character::affChar(void) const {
 	{
 		attron(COLOR_PAIR(this->_special));
 		if (this->_special == 1)
-			mvprintw(this->_y, this->_x, "<@>");
-		else if (this->_special == 2)
 			mvprintw(this->_y, this->_x, "_~0");
+		else if (this->_special == 2)
+			mvprintw(this->_y, this->_x, "<@>");
 		else
 			mvprintw(this->_y, this->_x, "[-]");
 		attroff(COLOR_PAIR(this->_special));
@@ -79,7 +88,7 @@ void		Character::affChar(void) const {
 	refresh();
 }
 
-Character::Character(void) : _name("<->"), _hp(0), _x(0), _y(0) {
+Character::Character(void) : _name("<->"), _hp(0), _x(0), _y(0), _toPrint(0) {
 	int r;
 
 	r = 1 + rand() % 3;
@@ -102,19 +111,23 @@ void		Character::rightX(void)
 	refresh();
 }
 
-void		Character::coll(Character *missile, int indexRef)
+void		Character::coll(Character *missile)
 {
 	int	i;
 
 	i = 0;
-	while (i < indexRef)
+	while (i < 30)
 	{
-		if (missile[i].getX() == this->_x)
+		if (this->getToPrint() == 1)
 		{
-			if(missile[i].getY() == this->_y)
+			if (missile[i].getY() == this->_y)
 			{
-					this->_hp -= 1;
+				if (missile[i].getX() == this->_x + 1 || missile[i].getX() == this->_x)
+				{
+					this->_hp = 0;
+					mvprintw(10, 10, "XXX");
 					missile[i].setX(-1);
+				}
 			}
 		}
 		i++;

@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/21 07:49:44 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 08:19:06 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -29,15 +29,17 @@ public:
 	int getHp( void ) const;
 	int getX( void ) const;
 	int getY( void ) const;
+	int getToPrint(void) const;
 	std::string getName( void ) const;
 
 	void setX( int x );
+	void setToPrint(int n);	
 	void setY( int Y );
 
 	void affChar(void) const;
 	void lowX(void); 
 	void rightX(void);
-	void coll(Character *missile, int indexRef);
+	void coll(Character *missile);
 
 private:
 	Character( Character const & src );
@@ -46,6 +48,7 @@ private:
 	int _x;
 	int _y;
 	int _special;
+	int _toPrint;
 	Character & operator=(Character const & rhs );
 };
 
