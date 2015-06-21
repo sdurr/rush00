@@ -1,5 +1,4 @@
 
-
 #ifndef BACKGROUND_CLASS_HPP
 # define BACKGROUND_CLASS_HPP
 #include <iostream>
@@ -14,12 +13,12 @@ public:
     void    ini( void );
 
 private:
-    unsigned int    pos_x;
+    unsigned int	    pos_x;
     int                *tabx;
     int                *taby;
     int                xmax;
 	Background( void );
-
-    
+	Background  & operator=( Background const & rhs );
+    Background( Background const & src );
 };
 #endif

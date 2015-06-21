@@ -1,18 +1,7 @@
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   Background.class.cpp                               :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/06/21 13:39:36 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/21 13:39:43 by sdurr            ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
 
 #include "Background.class.hpp"
 
-Background::Background(int    x_max, int y_max)
+Background::Background(int x_max, int y_max)
 {
 	this->tabx = new int[50];
 	this->taby = new int[50];
@@ -26,8 +15,11 @@ Background::Background(int    x_max, int y_max)
 	}
 	this->xmax = x_max;
 };
-Background::~Background(){};
-void    Background::move()
+
+Background::~Background( void ){
+};
+
+void    Background::move( void )
 {
 
 	int i;

@@ -168,7 +168,6 @@ void		Character::collBoss(Character *missile, int max)
 			if (missile[i].getX() >= (this->_x))
 			{
 				this->_hp -= 75;
-				mvprintw(this->_y, this->_x, "HI !");
 				missile[i].setX(-1);
 			}
 		}

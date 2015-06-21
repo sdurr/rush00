@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 15:45:07 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 17:20:41 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 class 	Game
 {
 	public:
-		Game();
-		~Game();
+		Game( void );
+		~Game( void );
 
-		void	play();
-		void	setY();
+		void	play( void );
+		void	setY( void );
 
 		int		getHP(void) const;
 		int		getScore(void) const;
@@ -40,5 +40,8 @@ class 	Game
 		int			_y;
 		Window		*_w;
 		int			_time;
+
+	Game & operator=( Game const &rhs);
+	Game( Game const & src );
 };
 #endif

@@ -22,16 +22,17 @@ Game::~Game()
 	if ( this->_win == 0 ) 
 		std::cout << "THANKS BUT U LOOSE !" << std::endl;
 	else
-		std::cout << "WELL DON YOU ARE IN MY BOOK !" << std::endl;
-		std::string x;
-		endwin();
-		std::cout << "Please enter your name " << std::endl;
-		std::cin >> x;
-		std::string ret = "score";
-		std::ofstream recup;
-		recup.open("score", std::ofstream::out | std::ofstream::app);
-		recup << x << " Your score is " << this->_score << "  your time : " << time(NULL) - this->_time<< std::endl;
-		recup.close();
+		std::cout << "WELL DONE YOU ARE IN MY BOOK !" << std::endl;
+	endwin();
+	
+	std::string x;
+	std::cout << "Please enter your name " << std::endl;
+	std::cin >> x;
+	std::string ret = "score";
+	std::ofstream recup;
+	recup.open("score", std::ofstream::out | std::ofstream::app);
+	recup << x << " Your score is " << this->_score << "  your time : " << time(NULL) - this->_time<< std::endl;
+	recup.close();
 }
 
 void	Game::setY()
@@ -81,7 +82,7 @@ void	Game::play()
 	size = 30;
 
 	getmaxyx(stdscr, new_y, new_x);
-	Background backG = Background(new_x, new_y);
+	Background backG(new_x, new_y);
 	Character	boss("BOSS", 10000, (new_x - 30), ((new_y / 2 ) - 10));
 	Character	*missile = new Character[new_x - 3];
 	Character	*missile2 = new Character[new_x - 3];
