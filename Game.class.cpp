@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-//   Updated: 2015/06/21 13:43:17 by sdurr            ###   ########.fr       //
+//   Updated: 2015/06/21 16:47:42 by sdurr            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,32 @@
 #include <sstream>
 #include <string>
 #include <cstdlib>
+#include <fstream>
+
 
 Game::Game() : _score(0), _x(1), _hp(5) {
 	this->_w = new Window;
 	this->setY();
 	this->_score = 0;
 	this->_x = 0;
+	this->_time = time(NULL);
 }
 
 Game::~Game()
 {
-	std::cout << "THANKS BUT U LOOSE !" << std::endl;
+	if ( this->_win == 0 ) 
+		std::cout << "THANKS BUT U LOOSE !" << std::endl;
+	else
+		std::cout << "WELL DON YOU ARE IN MY BOOK !" << std::endl;
+		std::string x;
+		endwin();
+		std::cout << "Please enter your name " << std::endl;
+		std::cin >> x;
+		std::string ret = "score";
+		std::ofstream recup;
+		recup.open("score", std::ofstream::out | std::ofstream::app);
+		recup << x << " Your score is " << this->_score << "  your time : " << time(NULL) - this->_time<< std::endl;
+		recup.close();
 }
 
 void	Game::setY()
@@ -99,6 +114,18 @@ void	Game::play()
 		j = 0;
 	while (1)
 	{
+		getmaxyx(stdscr, new_y, new_x);
+		if ( this->_x != new_x || this->_y != new_y ) {
+			erase();
+			border(':', ':', '_', '_', '+', '+', '+', '+');
+			border(':', ':', '_', '_', '+', '+', '+', '+');
+			this->_x = new_x;
+			this->_y = new_y;
+			this->_posy = _y / 2;
+			this->_posx = 2;
+			mvprintw( this->_posy, this->_posx, ">" );
+		}	
+		mvprintw( this->_posy, this->_posx, ">" );
 		backG.move();
 		i = 0;
 		j++;
@@ -119,11 +146,14 @@ void	Game::play()
 		scor << this->_score;
 		scor << " life a maining: ";
 		scor << this->_hp;
-		scor << " ";
+		scor << " time: ";
+		scor << (float)(time(NULL) - this->_time);
+		scor << " second ";
 		ScorT = scor.str();
 		mvprintw(0, 0, ScorT.c_str());
+
 		scor.str("");
-		if (this->_score < 600)
+		if (this->_score < 100)
 		while (i < 30)
 		{
 			this->_score += horde[i].coll(missile);
@@ -163,24 +193,13 @@ void	Game::play()
 		}
 		else if (test_clear == 0) {
 			clear();
-			test_clear++;		
+			test_clear++;
+			clear();
 		}
 		else {
 			Character Boss;
 			Boss.affBoss(30, 30);
-}
-		getmaxyx(stdscr, new_y, new_x);
-		if ( this->_x != new_x || this->_y != new_y ) {
-			erase();
-			border(':', ':', '_', '_', '+', '+', '+', '+');
-			border(':', ':', '_', '_', '+', '+', '+', '+');
-			this->_x = new_x;
-			this->_y = new_y;
-			this->_posy = _y / 2;
-			this->_posx = 2;
-			mvprintw( this->_posy, this->_posx, ">" );
-		}	
-		mvprintw( this->_posy, this->_posx, ">" );
+		}
 		key = getch();
 		if ( key == KEY_UP )
 		{
@@ -197,6 +216,7 @@ void	Game::play()
 				;
 		else if ( key == ' ' )
 		{
+			write (1, "\a", 1);
 			int jj = 0;
 			while (jj < new_x - 3)
 			{
