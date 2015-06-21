@@ -117,4 +117,32 @@ void		Character::lowX(void)
 
 }
 
+///////
+void		Character::rightX(void)
+{
+	mvprintw(this->_y, this->_x , " ");
+	this->_x += 1;
+	mvprintw(this->_y, this->_x , "-");
+	refresh();
+}
+
+void		Character::coll(Character *missile)
+{
+	int	i;
+
+	i = 0;
+	while (i < 30)
+	{
+		if (missile[i].getX() == this->_x)
+		{
+			if(missile[i].getY() == this->_y)
+			{
+				this->_life = 0;
+				missile[i].setX(-1);
+			}
+		}
+		i++;
+	}
+}
+
 /***/

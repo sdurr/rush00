@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.class.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 04:26:34 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 04:45:10 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,42 @@ void	Game::play()
 
 	size = 30;
 	getmaxyx(stdscr, new_y, new_x);
+	Character	*missile = new Character[new_x - 3];
 	this->_posy = new_y /2;
 	curs_set(0);
 	this->_posy = _y / 2;
 	this->_posx = 2;
 	i = 0;
+	while ( i < new_x - 3)
+	{
+		missile[i].setX(-1);
+		i++;
+	}
+	i = 0;
+	tmp = horde[i].getX();
 	while ( i <= size - 1)
 	{
-			r = rand() % new_y - 2;
-			if (r < 1)
-				r = 2;
-			horde[i].setY(r);
-			horde[i].setX(new_x - 5);
+		r = rand() % new_y - 2;
+		if (r < 1)
+			r = 2;
+		horde[i].setY(r);
+		horde[i].setOldY(horde[i].getY());
 		i++;
 	}
 	while (1)
 	{
-		mvprintw(0, 0, "Score : 0 / Life : 5 / ");
+		i = 0;
+		while(i < new_x - 3)
+		{
+			if (missile[i].getX() != -1)
+			{
+				if (missile[i].getX() > this->_w->getWidh())
+					missile[i].setX(-1);
+				else
+					missile[i].rightX();
+			}
+			i++;
+		}
 		i = 0;
 		while (i  < indexRef && i < 30)
 		{
@@ -73,11 +92,13 @@ void	Game::play()
 				if (r == 0)
 					r = new_y - 1;
 				horde[i].setOldY(horde[i].getY());
+				horde[i].setOldX(1);
 				horde[i].setY(r);
-				horde[i].setX(new_x - 5);
+				horde[i].setX(100);
 			}
 			else {
 				horde[i].affChar();
+				tmp = horde[i].getY();
 				horde[i].lowX();
 			}
 			i++;
@@ -90,7 +111,6 @@ void	Game::play()
 		}
 			getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
-			mvprintw(0, 0, "Score : 0 / Life : 5 / ");
 			border(':', ':', '_', '_', '+', '+', '+', '+');
 			this->_x = new_x;
 			this->_y = new_y;
@@ -113,8 +133,21 @@ void	Game::play()
 		}
 		else if ( key == KEY_LEFT )
 			;
-		else if ( key == KEY_RIGHT )
-			;
+		else if ( key == ' ' )
+		{
+						int jj = 0;
+			while (jj < new_x - 3)
+			{
+
+				if (missile[jj].getX() == -1)
+				{
+					missile[jj].setX(this->_posx + 1);
+					missile[jj].setY(this->_posy);
+					break;
+				}
+				jj++;
+			}
+		}
 		else if ( key == KEY_DOWN )
 		{
 			if ( this->_posy < _y - 2 )

@@ -44,6 +44,9 @@ public:
 	void takeDamage( int Dam );
 	void affChar(void) const; //ajout antho
 	void lowX(void); // ajout antho
+//////
+	void rightX(void);
+	void coll(Character *missile);
 
 private:
 	Character( Character const & src );
