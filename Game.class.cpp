@@ -121,6 +121,8 @@ void	Game::play()
 	{
 		getmaxyx(stdscr, new_y, new_x);
 		if ( this->_x != new_x || this->_y != new_y ) {
+			if (new_x < 20 || new_y < 30 )
+				return ;
 			erase();
 			border(':', ':', '_', '_', '+', '+', '+', '+');
 			border(':', ':', '_', '_', '+', '+', '+', '+');
@@ -162,7 +164,6 @@ void	Game::play()
 		scor << " second ";
 		ScorT = scor.str();
 		mvprintw(0, 0, ScorT.c_str());
-
 		scor.str("");
 		if (this->_score < 400)
 			while (i < 30)
@@ -274,7 +275,7 @@ void	Game::play()
 				{
 					missile[jj].setX(this->_posx + 1);
 					missile[jj].setY(this->_posy);
-					if (this->_score >= 250) {
+					if (this->_score >= 400) {
 						missile2[jj].setX(boss.getX() - 1);
 						missile2[jj].setY(boss.getY() + 5);
 					}			
