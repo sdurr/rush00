@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-//   Updated: 2015/06/21 13:26:43 by sdurr            ###   ########.fr       //
+/*   Updated: 2015/06/21 15:57:52 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -22,7 +22,7 @@
 class Character {
 
 public:
-	Character( std::string name , int hp, int x, int y);
+	Character(std::string name , int hp, int x, int y);
 	~Character( void );
 	Character( void );
 
@@ -36,11 +36,15 @@ public:
 	void setToPrint(int n);	
 	void setY( int Y );
 
-	void affBoss(int x, int y) ;
+	void affBoss(void);
 	void affChar(void) const;
 	void lowX(void); 
+	void upX(void);
 	void rightX(void);
-	int	 coll(Character *missile);
+	void leftX(void);
+	int	 coll(Character *missile, int max);
+	void collBoss(Character *missile, int max);
+	Character & operator=(Character const & rhs );
 
 private:
 	Character( Character const & src );
@@ -50,7 +54,6 @@ private:
 	int _y;
 	int _special;
 	int _toPrint;
-	Character & operator=(Character const & rhs );
 };
 
 std::ostream & operator<<( std::ostream & o, Character const & i);
