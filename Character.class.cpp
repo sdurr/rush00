@@ -99,19 +99,19 @@ std::ostream & operator<<(std::ostream & o, Character const & i) {
 
 void		Character::affChar(void) const {
 
-	mvprintw(this->_y, this->_x + 1, " ");
+	mvprintw(this->_y, this->_x + 1, "   ");
 	refresh();
 	if (this->_x > 2)
-		mvprintw(this->_y, this->_x, "X");
+		mvprintw(this->_y, this->_x, "<@>");
+
 }
 
-Character::Character( void ) : _name("X"), _hp(1), _hpMax(1), _x(100), _y(50), _life(30), _xMax(30), _yMax(30), _oldX(50), _oldY(18) {
+Character::Character( void ) : _name("<->"), _hp(1), _hpMax(1), _x(100), _y(50), _life(30), _xMax(30), _yMax(30), _oldX(50), _oldY(18) {
 	return;
 }
 
 void		Character::lowX(void)
 {
-//	this->_oldX = _x;
 		this->_oldX = _x;
 		this->_x -= 1;
 

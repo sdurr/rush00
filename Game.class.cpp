@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 01:46:11 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 02:55:36 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	Game::play()
 	int new_y;
 	int i;
 	int r;
-	Character	horde[100];
+	Character	horde[30];
 	int size;
 	int j;
+	int tmp;
 
 	size = 30;
 	getmaxyx(stdscr, new_y, new_x);
@@ -51,9 +52,10 @@ void	Game::play()
 	this->_posy = _y / 2;
 	this->_posx = 2;
 	i = 0;
+	tmp = horde[i].getX();
 	while ( i <= size - 1)
 	{
-			r = rand() % size - 2;
+			r = rand() % new_y - 2;
 			if (r < 1)
 				r = 2;
 			horde[i].setY(r);
@@ -63,31 +65,27 @@ void	Game::play()
 	while (1)
 	{
 		i = 0;
-//		clear();
 		while (i  < indexRef && i < 30)
 		{
 			if ( horde[i].getX() <= 1 || horde[i].getLife() == 0 )
 			{
-				r = rand() % 28;
+				r = rand() % new_y - 2;
 				if (r == 0)
-					r = 29;
+					r = new_y - 1;
 				horde[i].setOldY(horde[i].getY());
 				horde[i].setOldX(1);
 				horde[i].setY(r);
 				horde[i].setX(100);
 			}
 			else {
-				this->_oldPosy = this->_posy;
-				this->_oldPosx = this->_posx;
-				mvprintw(this->_oldPosy, this->_oldPosx, "   ");
-				mvprintw(this->_posy, this->_posx, ">>>");
 				horde[i].affChar();
+				tmp = horde[i].getY();
 				horde[i].lowX();
 			}
 			i++;
 		}
 		j++;
-		if (j == 20)
+		if (j == 25)
 		{
 			indexRef++;
 			j =0;
@@ -99,7 +97,7 @@ void	Game::play()
 			this->_y = new_y;
 			this->_posy = _y / 2;
 			this->_posx = 2;
-			mvprintw( this->_posy, this->_posx, ">>>" );
+			mvprintw( this->_posy, this->_posx, ">" );
 		}
 		border(':', ':', '_', '_', '+', '+', '+', '+');
 		this->display();
@@ -111,8 +109,8 @@ void	Game::play()
 				this->_oldPosx = this->_posx;
 				this->_posy = this->_posy - 1;
 			}
-			mvprintw(this->_oldPosy, this->_oldPosx, "   ");
-			mvprintw(this->_posy, this->_posx, ">>>");
+			mvprintw(this->_oldPosy, this->_oldPosx, " ");
+			mvprintw(this->_posy, this->_posx, ">");
 		}
 		else if ( key == KEY_LEFT )
 			;
@@ -125,8 +123,8 @@ void	Game::play()
 				this->_oldPosy = this->_posy;
 				this->_oldPosx = this->_posx;
 				this->_posy = this->_posy + 1;
-				mvprintw(this->_oldPosy, this->_oldPosx, "   ");
-				mvprintw(this->_posy, this->_posx, ">>>");
+				mvprintw(this->_oldPosy, this->_oldPosx, " ");
+				mvprintw(this->_posy, this->_posx, ">");
 	 		}
 		}
 		else if ( key == 27 ) {
