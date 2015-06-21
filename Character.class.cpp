@@ -111,7 +111,7 @@ void		Character::rightX(void)
 	refresh();
 }
 
-void		Character::coll(Character *missile)
+int		Character::coll(Character *missile)
 {
 	int	i;
 
@@ -124,12 +124,17 @@ void		Character::coll(Character *missile)
 			{
 				if (missile[i].getX() == this->_x + 1 || missile[i].getX() == this->_x)
 				{
-					this->_hp = 0;
+					this->_hp -= 1;
 					mvprintw(this->_y, this->_x, "    ");
+					if (this->_hp == 0)
+						return (50);
+					else
+						return (15);
 					missile[i].setX(-1);
 				}
 			}
 		}
 		i++;
 	}
+	return (0);
 }

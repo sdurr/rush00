@@ -6,7 +6,7 @@
 //   By: sdurr <sdurr@student.42.fr>                +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/06/20 17:25:37 by sdurr             #+#    #+#             //
-/*   Updated: 2015/06/21 08:19:06 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 10:20:37 by acivita          ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -39,7 +39,7 @@ public:
 	void affChar(void) const;
 	void lowX(void); 
 	void rightX(void);
-	void coll(Character *missile);
+	int	 coll(Character *missile);
 
 private:
 	Character( Character const & src );

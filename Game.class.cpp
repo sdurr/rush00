@@ -6,7 +6,7 @@
 /*   By: dgrimm <dgrimm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:05 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 10:12:33 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 10:46:32 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	Game::setY()
 }
 
 int		Game::getHP(void) const {
+	return this->_hp;
+}
+
+int		Game::getScore(void) const {
 	return this->_hp;
 }
 
@@ -92,15 +96,20 @@ void	Game::play()
 		tmp = 0;
 		while (i < 30)
 		{
-			horde[i].coll(missile);
+			this->_score += horde[i].coll(missile);
 			if (horde[i].getX() == this->_posx && horde[i].getY() == this->_posy)
 			{
 				this->_hp--;
 				if (this->_hp <= 0)
+				{
+					endwin();
 					return;
+				}
 			}
 			if ( horde[i].getX() <= 1 || horde[i].getHp() == 0 )
 			{
+				if (horde[i].getX() <= 1)
+					this->_score -= 10;
 				r = rand() % new_y - 2;
 				if (r == 0)
 					r = new_y - 1;

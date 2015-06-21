@@ -6,7 +6,7 @@
 /*   By: msarr <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 17:31:12 by msarr             #+#    #+#             */
-/*   Updated: 2015/06/21 07:14:07 by acivita          ###   ########.fr       */
+/*   Updated: 2015/06/21 10:16:07 by acivita          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class 	Game
 		void	setY();
 
 		int		getHP(void) const;
-
+		int		getScore(void) const;
 
 	private:
 		int			_score;
